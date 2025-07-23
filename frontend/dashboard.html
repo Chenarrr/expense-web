@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+
+    <nav>
+        <div class="nav">Expense Dashboard</div>
+        <ul class="nav-links">
+            <li class="nav_li"><a href="dashboard.html">Home</a></li>
+            <li class="nav_li"><a href="account.html">My Account</a></li>
+            <li class="nav_li"><a href="index.html">Log Out</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Welcome to your dashboard!</h1>
+        <p>Here you can manage your expenses and track your financial activities.</p>
+    </header>
+
+    <main>
+        <section id="expense-section">
+            <h2>Add Expense</h2>
+            <div id="expense-inputs">
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" required step="0.01" min="0"/>
+                <br>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required/>
+                <br>
+                <label for="note">Note:</label>
+                <input type="text" id="note" name="note" required/>
+                <br>
+                <button id="add-expense">Add Expense</button>
+            </div>
+        </section>
+
+        <section>
+            <h2>Recent Transactions</h2>
+            <div id="transactions-list">No transactions recorded yet.</div>
+        </section>
+
+        <section>
+            <h2>Statistics</h2>
+            <p>Track your spending habits and budget effectively.</p>
+        </section>
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

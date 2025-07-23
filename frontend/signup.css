@@ -2,7 +2,9 @@ body {
      font-family: Arial, Helvetica, sans-serif;
      margin:0;
      padding: 0;
-      background-color: #47c26cc4;
+      /* background-color: #47c26cc4; */
+             background: linear-gradient(to bottom, #47c26cc4, #078f40);
+
         
 }
 
@@ -69,11 +71,15 @@ button {
     cursor: pointer;
     margin-top: 1rem;
     width: 100%;
+        box-shadow: #ccc 0px 0px 10px;
+
 }
 
 button:hover {
     background-color: #309e48;
     color: #ffffff;
+     box-shadow: #0d130f 0px 0px 10px;
+
 }
 
 p {
@@ -83,7 +89,7 @@ p {
 }
 
 a {
-    color: #309e48;
+    color: #ffffff;
     text-decoration: none;
 }
 
