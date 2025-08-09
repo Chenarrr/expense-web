@@ -1,52 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Account</title>
-  <link rel="stylesheet" href="account.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Account — Expense Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-
-  <header>
-    <h1>My Account</h1>
-    <p>Manage your profile and settings.</p>
-  </header>
-
-  <nav>
-    <div class="nav">Expense Tracker</div>
-    <ul class="nav-links">
-      <li><a href="dashboard.html">Home</a></li>
-      <li><a href="account.html">My Account</a></li>
-      <li><a href="index.html">Log Out</a></li>
-    </ul>
+<body class="min-h-screen bg-gradient-to-b from-emerald-400/80 to-emerald-700 font-sans">
+  <nav class="bg-white/80 backdrop-blur-sm shadow-sm">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <div class="text-xl font-bold text-emerald-900">Expense Tracker</div>
+        <ul class="flex items-center gap-3">
+          <li><a href="dashboard.html" class="px-3 py-1 rounded-md text-emerald-900 hover:bg-emerald-50">Home</a></li>
+          <li><a href="account.html" class="px-3 py-1 rounded-md text-emerald-900 hover:bg-emerald-50">My Account</a></li>
+          <li><a href="index.html" class="px-3 py-1 rounded-md text-emerald-900 hover:bg-emerald-50">Log Out</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
-  <main>
-    <section class="account-info">
-      <h2>User Information</h2>
-      <p><strong>Username:</strong> user123</p>
-      <p><strong>Email:</strong> user@example.com</p>
+  <header class="max-w-6xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-emerald-900">My Account</h1>
+    <p class="mt-1 text-emerald-900/80">Manage your profile and settings.</p>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 pb-10 grid gap-6 md:grid-cols-2">
+    <section class="bg-white/90 rounded-xl p-6 shadow">
+      <h2 class="text-xl font-semibold text-emerald-900 mb-3">User Information</h2>
+      <p><strong>Username:</strong> <span class="font-medium">user123</span></p>
+      <p class="mt-1"><strong>Email:</strong> <span class="font-medium">user@example.com</span></p>
     </section>
 
-    <section class="preferences">
-      <h2>Preferences</h2>
-      <label>
-        <input type="checkbox" />
-        Enable Notifications
-      </label><br/>
-      <label>
-        <input type="checkbox" />
-        Dark Mode
+    <section class="bg-white/90 rounded-xl p-6 shadow">
+      <h2 class="text-xl font-semibold text-emerald-900 mb-3">Preferences</h2>
+      <label class="inline-flex items-center gap-2">
+        <input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500" />
+        <span>Enable Notifications</span>
+      </label>
+      <br />
+      <label class="inline-flex items-center gap-2 mt-3">
+        <input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500" />
+        <span>Dark Mode</span>
       </label>
     </section>
 
-    <section class="account-actions">
-      <h2>Account Actions</h2>
-      <button class="btn">Change Password</button>
-      <button class="btn danger">Delete Account</button>
+    <section class="bg-white/90 rounded-xl p-6 shadow md:col-span-2">
+      <h2 class="text-xl font-semibold text-emerald-900 mb-3">Account Actions</h2>
+      <div class="flex gap-4">
+        <button class="px-4 py-2 rounded-md bg-emerald-600 text-white hover:bg-emerald-700">Change Password</button>
+        <button class="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700">Delete Account</button>
+      </div>
     </section>
   </main>
-
 </body>
 </html>

@@ -1,56 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard — Expense Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-
-    <nav>
-        <div class="nav">Expense Dashboard</div>
-        <ul class="nav-links">
-            <li class="nav_li"><a href="dashboard.html">Home</a></li>
-            <li class="nav_li"><a href="account.html">My Account</a></li>
-            <li class="nav_li"><a href="index.html">Log Out</a></li>
+<body class="min-h-screen bg-gradient-to-b from-emerald-400/80 to-emerald-700 font-sans">
+  <nav class="bg-white/80 backdrop-blur-sm shadow-sm">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <div class="text-xl font-bold text-emerald-900">Expense Tracker</div>
+        <ul class="flex items-center gap-3">
+          <li><a href="dashboard.html" class="px-3 py-1 rounded-md text-emerald-900 hover:bg-emerald-50">Home</a></li>
+          <li><a href="account.html" class="px-3 py-1 rounded-md text-emerald-900 hover:bg-emerald-50">My Account</a></li>
+          <li><a href="index.html" class="px-3 py-1 rounded-md text-emerald-900 hover:bg-emerald-50">Log Out</a></li>
         </ul>
-    </nav>
+      </div>
+    </div>
+  </nav>
 
-    <header>
-        <h1>Welcome to your dashboard!</h1>
-        <p>Here you can manage your expenses and track your financial activities.</p>
-    </header>
+  <header class="max-w-6xl mx-auto px-4 mt-8">
+    <div class="bg-white/90 rounded-xl p-6 shadow text-emerald-900">
+      <h1 class="text-2xl font-bold">Welcome to your dashboard!</h1>
+      <p class="mt-1 text-sm">Manage expenses and track your financial activities.</p>
+    </div>
+  </header>
 
-    <main>
-        <section id="expense-section">
-            <h2>Add Expense</h2>
-            <div id="expense-inputs">
-                <label for="amount">Amount:</label>
-                <input type="number" id="amount" name="amount" required step="0.01" min="0"/>
-                <br>
+  <main class="max-w-6xl mx-auto px-4 mt-8 grid gap-8 md:grid-cols-2">
+    <section class="bg-white/90 rounded-xl p-6 shadow">
+      <h2 class="text-lg font-semibold text-emerald-900 mb-4">Add Expense</h2>
+      <form id="expense-form" class="flex flex-col gap-3">
+        <input id="amount" type="number" step="0.01" min="0" placeholder="Amount" class="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-emerald-300" />
+        <input id="date" type="date" class="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-emerald-300" />
+        <input id="note" type="text" placeholder="Note" class="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-emerald-300" />
+        <button id="add-expense" type="button" class="mt-2 w-full rounded-lg bg-emerald-600 text-white px-4 py-2 hover:bg-emerald-700">Add Expense</button>
+      </form>
+    </section>
 
-                <label for="date">Date:</label>
-                <input type="date" id="date" name="date" required/>
-                <br>
-                <label for="note">Note:</label>
-                <input type="text" id="note" name="note" required/>
-                <br>
-                <button id="add-expense">Add Expense</button>
-            </div>
-        </section>
+    <section class="space-y-6">
+      <div class="bg-white/90 rounded-xl p-6 shadow">
+        <h2 class="text-lg font-semibold text-emerald-900 mb-3">Recent Transactions</h2>
+        <div id="transactions-list" class="text-sm text-emerald-900/80">No transactions recorded yet.</div>
+      </div>
 
-        <section>
-            <h2>Recent Transactions</h2>
-            <div id="transactions-list">No transactions recorded yet.</div>
-        </section>
+      <div class="bg-white/90 rounded-xl p-6 shadow">
+        <h2 class="text-lg font-semibold text-emerald-900 mb-3">Statistics</h2>
+        <p class="text-sm text-emerald-900/80">Track your spending habits and budget effectively.</p>
+      </div>
+    </section>
+  </main>
 
-        <section>
-            <h2>Statistics</h2>
-            <p>Track your spending habits and budget effectively.</p>
-        </section>
-    </main>
+  <script>
+    // Small script to add expenses to the transactions list
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('expense-form');
+      const txList = document.getElementById('transactions-list');
+      const addBtn = document.getElementById('add-expense');
 
-    <script src="dashboard.js"></script>
+      function formatCurrency(v){ return new Intl.NumberFormat(undefined,{style:'currency',currency:'USD'}).format(v); }
+
+      addBtn.addEventListener('click', () => {
+        const amount = parseFloat(document.getElementById('amount').value);
+        const date = document.getElementById('date').value;
+        const note = document.getElementById('note').value.trim();
+
+        if (isNaN(amount) || amount < 0) { alert('Enter a valid amount'); return; }
+        if (!date) { alert('Choose a date'); return; }
+
+        const item = document.createElement('div');
+        item.className = 'flex items-center justify-between border-b border-emerald-100 py-2';
+        item.innerHTML = `<div>
+                            <div class="font-medium text-emerald-900">${note || 'Expense'}</div>
+                            <div class="text-xs text-emerald-900/60">${date}</div>
+                          </div>
+                          <div class="text-sm text-emerald-900">${formatCurrency(amount)}</div>`;
+        if (txList.textContent.trim() === 'No transactions recorded yet.') txList.textContent = '';
+        txList.prepend(item);
+
+        form.reset();
+      });
+    });
+  </script>
 </body>
 </html>
